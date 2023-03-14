@@ -7,6 +7,8 @@ const thumbs = document.getElementById("thumbs");
 const buttonUp = document.getElementById("button-up");
 const buttondown = document.getElementById("button-down");
 let currentIndex = 0;
+buttonUp.addEventListener("click", goNext);
+
 
 
 
@@ -22,8 +24,23 @@ document.querySelectorAll(".image-slide")[currentIndex + images.length].classLis
 
 
 function goNext() {
+document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");
+document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
+
+if (currentIndex === images.length - 1) {
+    currentIndex = 0;
+}
+else {
+    currentIndex++;
+}
+document.querySelectorAll('.image-slide')[currentIndex].classList.add("active");
+document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.add("active");
+
+
+
+
 
 }
 
-createCarousel();
 
+createCarousel();
