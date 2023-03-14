@@ -90,3 +90,6 @@ bottom:434px;
     border:1px solid white;
 }
 
+.not-visible{
+    visibility: hidden;
+}

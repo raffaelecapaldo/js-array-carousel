@@ -55,3 +55,20 @@ function goPrev() {// come sopra ma vai indietro
 
 
 createCarousel();
+
+
+//BONUS MEOW - ho imparato cos'è una funzione ricorsiva
+const sound = new Audio('sounds/stray.mp3'); // elemento audio con miagolio Stray
+
+function checkVariable() { 
+  if (currentIndex == images.indexOf("img/04.webp")) { //controlla currentIndex sia attualmente alla posizione della foto di Stray nell'indice
+    sound.play(1); // riproduci il suono
+    setTimeout(checkVariable, 15000);// riproduci il suono tra altri 15 secondi se rimani fermo sulla foto, permetti di riprodurre di nuovo il suono soltanto
+    // dopo 15sec se ritorni sulla foto da altra posizione
+
+  } else {
+    setTimeout(checkVariable, 100); // ogni 100 secondi che l'incide non corrisponde, richiama la funzione
+  }
+}
+
+checkVariable();//primo avvio della funzione
