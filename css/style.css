@@ -29,7 +29,8 @@
 #button-up,
 #button-down {
     border: none;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+    filter:brightness(2);
     border-radius:10px;
     position: absolute;
     left: 45%;
@@ -38,6 +39,7 @@
     padding: 0;
     margin: 0;
     padding:1px 10px;
+    z-index:1000;
 
 }
 
@@ -51,4 +53,23 @@
     bottom: 3px;
     left: 45%;
 
+}
+
+
+/* UTILITY */
+.carousel img {
+    display:none;
+}
+
+.carousel.active img {
+    display:block;
+} 
+
+.thumbs img {
+    filter:brightness(0.3);
+}
+
+.thumbs img.active {
+    filter:brightness(1);
+    border:1px solid white;
 }
