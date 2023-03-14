@@ -41,8 +41,8 @@ h1 {
 
 .buttons {
     position:absolute;
-    top:8px;
-    left:122px;
+    top: 2%;
+    left:42%;
     z-index:100;
     gap:415px;
     
@@ -62,14 +62,6 @@ h1 {
 
 }
 
-#button-up {
-bottom:434px;
-}
-
-
-#button-down {
-    top: 434px;
-}
 
 
 /* UTILITY */
@@ -92,4 +84,10 @@ bottom:434px;
 
 .not-visible{
     visibility: hidden;
+}
+
+@media screen and (max-width:902px) {
+    .buttons {
+        left:35%;
+    }
 }
