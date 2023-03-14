@@ -3,11 +3,12 @@
 }
 
 body {
-    background-color:#15213c;
+    background-color:#cccbc9;
 }
 
 h1 {
-    color:#780106;
+    color:black;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .mycontainer {
@@ -41,7 +42,7 @@ h1 {
 .buttons {
     position:absolute;
     top:8px;
-    left:114px;
+    left:122px;
     z-index:100;
     gap:415px;
     
