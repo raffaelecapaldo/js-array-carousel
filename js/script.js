@@ -8,8 +8,7 @@ const buttonUp = document.getElementById("button-up");
 const buttondown = document.getElementById("button-down");
 let currentIndex = 0;
 buttonUp.addEventListener("click", goNext);
-
-
+buttonUp.addEventListener("click", goPrev);
 
 
 function createCarousel() { //ciclo for per creare i tag img sia nelle slides che nelle thumbs
@@ -17,29 +16,40 @@ function createCarousel() { //ciclo for per creare i tag img sia nelle slides ch
         carousel.innerHTML += `<img class="image-slide" src="${images[i]}" alt="">`
         thumbs.innerHTML += `<img class="image-slide" src="${images[i]}" alt="">`
     }
-//attiva tutti i primi tag img
-document.querySelectorAll(".image-slide")[currentIndex].classList.add("active");
-document.querySelectorAll(".image-slide")[currentIndex + images.length].classList.add("active");
+    //attiva tutti i primi tag img
+    document.querySelectorAll(".image-slide")[currentIndex].classList.add("active");
+    document.querySelectorAll(".image-slide")[currentIndex + images.length].classList.add("active");
 }
 
 
 function goNext() {
-document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");
-document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
+    document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");//rimuovi active a chi lo possiede attualmente
+    document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
 
-if (currentIndex === images.length - 1) {
-    currentIndex = 0;
+    if (currentIndex === images.length - 1) {// se il numero supera la quantità massima delle immagini disponibili, ritorna a zero
+        currentIndex = 0;
+    }
+    else {
+        currentIndex++; //altrimenti vai avanti
+    }
+    document.querySelectorAll('.image-slide')[currentIndex].classList.add("active");//assegno ora dove ti trovi (se avanti o a zero) active
+    document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.add("active");
+    console.log()
 }
-else {
-    currentIndex++;
-}
-document.querySelectorAll('.image-slide')[currentIndex].classList.add("active");
-document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.add("active");
 
 
+function goPrev() {// come sopra ma vai indietro
+    document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");
+    document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
 
-
-
+    if (currentIndex === 0) {//se sei arrivato alla prima foto, riparti dall'ultima, usa lenght per avere la loro quantità
+        currentIndex = images.length - 1;
+    }
+    else {
+        currentIndex--;//andiamo indietro
+    }
+    document.querySelectorAll('.image-slide')[currentIndex].classList.add("active");
+    document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.add("active");
 }
 
 
