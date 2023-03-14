@@ -61,7 +61,7 @@
     display:none;
 }
 
-.carousel.active img {
+.carousel img.active {
     display:block;
 } 
 
