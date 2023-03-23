@@ -72,3 +72,8 @@ function checkVariable() {
 }
 
 checkVariable();//primo avvio della funzione
+
+//AUTOPLAY ogni 2 sec
+const autoplay = setInterval(goNext, 2000);
+//Quando il mouse va sul carosello, interrompi l'autoplay
+carousel.addEventListener("mouseover", ()=> clearInterval(autoplay));
