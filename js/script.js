@@ -1,4 +1,4 @@
-//Creiamo array con le immagini del carosello
+//Creiamo array di objects con le info sulle immagini del carosello
 
 const images = [ {
     file: "01.webp",
@@ -18,7 +18,7 @@ const images = [ {
 },
 {
     file: "05.webp",
-    title: "Avengers",
+    title: "Marvel Avengers",
 },
 
 
@@ -37,17 +37,18 @@ buttonDown.addEventListener("click", goNext);
 
 function createCarousel() { //ciclo for each per creare carosello coi dati dell'array di oggetti
     images.forEach((image) => {
-        carousel.innerHTML += `<img class="image-slide" src="img/${image.file}" alt="${image.title}">`
+        carousel.innerHTML += `<div class="slide"> <img class="image-slide" src="img/${image.file}" alt="${image.title}"> <div class="titlebox">${image.title}</div></div>`
         thumbs.innerHTML += `<img class="image-slide" src="img/${image.file}" alt="${image.title}">`
+
     })
     //attiva tutti i primi tag img
-    document.querySelectorAll(".image-slide")[currentIndex].classList.add("active");
+    document.querySelectorAll(".slide")[currentIndex].classList.add("active");
     document.querySelectorAll(".image-slide")[currentIndex + images.length].classList.add("active");
 }
 
 
 function goNext() {
-    document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");//rimuovi active a chi lo possiede attualmente
+    document.querySelectorAll('.slide')[currentIndex].classList.remove("active");//rimuovi active a chi lo possiede attualmente
     document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
 
     if (currentIndex === images.length - 1) {// se il numero supera la quantità massima delle immagini disponibili, ritorna a zero
@@ -56,15 +57,17 @@ function goNext() {
     else {
         currentIndex++; //altrimenti vai avanti
     }
-    document.querySelectorAll('.image-slide')[currentIndex].classList.add("active");//assegno ora dove ti trovi (se avanti o a zero) active
+    document.querySelectorAll('.slide')[currentIndex].classList.add("active");//assegno ora dove ti trovi (se avanti o a zero) active
     document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.add("active");
-    console.log()
+
 }
 
 
 function goPrev() {// come sopra ma vai indietro
     document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");
     document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
+    document.querySelectorAll('.titlebox')[currentIndex + images.length].classList.remove("active");
+
 
     if (currentIndex === 0) {//se sei arrivato alla prima foto, riparti dall'ultima, usa lenght per avere la loro quantità
         currentIndex = images.length - 1;
