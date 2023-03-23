@@ -1,6 +1,29 @@
 //Creiamo array con le immagini del carosello
 
-const images = ['img/01.webp', 'img/02.webp', 'img/03.webp', 'img/04.webp', 'img/05.webp'];
+const images = [ {
+    file: "01.webp",
+    title: "Spiderman",
+},
+{
+    file: "02.webp",
+    title: "Ratchet & Clank",
+},
+{
+    file: "03.webp",
+    title: "Fortnite",
+},
+{
+    file: "04.webp",
+    title: "Stray",
+},
+{
+    file: "05.webp",
+    title: "Avengers",
+},
+
+
+
+]
 
 const carousel = document.getElementById("carousel");
 const thumbs = document.getElementById("thumbs");
@@ -12,11 +35,11 @@ buttonUp.addEventListener("click", goPrev);
 buttonDown.addEventListener("click", goNext);
 
 
-function createCarousel() { //ciclo for per creare i tag img sia nelle slides che nelle thumbs
-    for (let i = 0; i < images.length; i++) {
-        carousel.innerHTML += `<img class="image-slide" src="${images[i]}" alt="">`
-        thumbs.innerHTML += `<img class="image-slide" src="${images[i]}" alt="">`
-    }
+function createCarousel() { //ciclo for each per creare carosello coi dati dell'array di oggetti
+    images.forEach((image) => {
+        carousel.innerHTML += `<img class="image-slide" src="img/${image.file}" alt="${image.title}">`
+        thumbs.innerHTML += `<img class="image-slide" src="img/${image.file}" alt="${image.title}">`
+    })
     //attiva tutti i primi tag img
     document.querySelectorAll(".image-slide")[currentIndex].classList.add("active");
     document.querySelectorAll(".image-slide")[currentIndex + images.length].classList.add("active");
@@ -60,15 +83,15 @@ createCarousel();
 //BONUS MEOW - ho imparato cos'è una funzione ricorsiva
 const sound = new Audio('sounds/stray.mp3'); // elemento audio con miagolio Stray
 
-function checkVariable() { 
-  if (currentIndex == images.indexOf("img/04.webp")) { //controlla currentIndex sia attualmente alla posizione della foto di Stray nell'indice
-    sound.play(1); // riproduci il suono
-    setTimeout(checkVariable, 15000);// riproduci il suono tra altri 15 secondi se rimani fermo sulla foto, permetti di riprodurre di nuovo il suono soltanto
-    // dopo 15sec se ritorni sulla foto da altra posizione
+function checkVariable() {
+    if (currentIndex == images.indexOf("img/04.webp")) { //controlla currentIndex sia attualmente alla posizione della foto di Stray nell'indice
+        sound.play(1); // riproduci il suono
+        setTimeout(checkVariable, 15000);// riproduci il suono tra altri 15 secondi se rimani fermo sulla foto, permetti di riprodurre di nuovo il suono soltanto
+        // dopo 15sec se ritorni sulla foto da altra posizione
 
-  } else {
-    setTimeout(checkVariable, 100); // ogni 100 secondi che l'incide non corrisponde, richiama la funzione
-  }
+    } else {
+        setTimeout(checkVariable, 100); // ogni 100 secondi che l'incide non corrisponde, richiama la funzione
+    }
 }
 
 checkVariable();//primo avvio della funzione
@@ -76,4 +99,4 @@ checkVariable();//primo avvio della funzione
 //AUTOPLAY ogni 2 sec
 const autoplay = setInterval(goNext, 2000);
 //Quando il mouse va sul carosello, interrompi l'autoplay
-carousel.addEventListener("mouseover", ()=> clearInterval(autoplay));
+carousel.addEventListener("mouseover", () => clearInterval(autoplay));
