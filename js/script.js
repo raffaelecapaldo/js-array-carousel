@@ -53,9 +53,8 @@ function goNext() {
 }
 
 function goPrev() {// come sopra ma vai indietro
-    document.querySelectorAll('.image-slide')[currentIndex].classList.remove("active");
+    document.querySelectorAll('.slide')[currentIndex].classList.remove("active");
     document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.remove("active");
-    document.querySelectorAll('.titlebox')[currentIndex + images.length].classList.remove("active");
 
     if (currentIndex === 0) {//se sei arrivato alla prima foto, riparti dall'ultima, usa lenght per avere la loro quantità
         currentIndex = images.length - 1;
@@ -63,7 +62,7 @@ function goPrev() {// come sopra ma vai indietro
     else {
         currentIndex--;//andiamo indietro
     }
-    document.querySelectorAll('.image-slide')[currentIndex].classList.add("active");
+    document.querySelectorAll('.slide')[currentIndex].classList.add("active");
     document.querySelectorAll('.image-slide')[currentIndex + images.length].classList.add("active");
 }
 
